@@ -15,20 +15,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 	}
-    /*
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-       
-        SemanticScreenReader.Announce(CounterBtn.Text);
-	}
-    */
+ 
     private void Sumowanie(object sender, EventArgs e)
     {
         int aa = int.Parse(a.Text);
@@ -104,10 +91,31 @@ public partial class MainPage : ContentPage
          sqlite_cmd.CommandText = "INSERT INTO losowanie (liczba) VALUES(" + wylosowana + ");";
          sqlite_cmd.ExecuteNonQuery();
 
-
+        con.Close();
 
     }
 
+    /*READ
+     
+      static void ReadData(SQLiteConnection conn)
+      {
+         SQLiteDataReader sqlite_datareader;
+         SQLiteCommand sqlite_cmd;
+         sqlite_cmd = conn.CreateCommand();
+         sqlite_cmd.CommandText = "SELECT * FROM SampleTable";
+
+         sqlite_datareader = sqlite_cmd.ExecuteReader();
+         while (sqlite_datareader.Read())
+         {
+            string myreader = sqlite_datareader.GetString(0);
+            Console.WriteLine(myreader);
+         }
+         conn.Close();
+      }
+
+
+
+    */
 
 
     void OnEntryTextChanged(object sender, TextChangedEventArgs e)
