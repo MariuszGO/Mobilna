@@ -1,4 +1,10 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Data.SQLite;
 namespace Mobilna;
 
 public partial class MainPage : ContentPage
@@ -70,15 +76,38 @@ public partial class MainPage : ContentPage
         wylosowana = liczba.Next(aa, bb+1);
         c.Text = wylosowana.ToString();
 
-        string conection_string= "Data Source=baza.db";
+        string conection_string= "Data Source=C:\\Users\\mariu\\Source\\Repos\\MariuszGO\\Mobilna\\Mobilna\\baza.db;Version=3;";
         SQLiteConnection con = new SQLiteConnection(conection_string);
-        
-        con.Open();
+
+
+        try
+        {
+            con.Open();
+        }
+        catch (Exception ex)
+        {
+
+        }
+       // return con;
+    
+
+
+
+ 
 
         string sql;
-        sql = "INSERT INTO"
+       
+
+
+    SQLiteCommand sqlite_cmd;
+    sqlite_cmd = con.CreateCommand();
+         sqlite_cmd.CommandText = "INSERT INTO losowanie (liczba) VALUES(" + wylosowana + ");";
+         sqlite_cmd.ExecuteNonQuery();
+
+
 
     }
+
 
 
     void OnEntryTextChanged(object sender, TextChangedEventArgs e)

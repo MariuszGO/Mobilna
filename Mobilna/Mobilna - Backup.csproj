@@ -49,15 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.1" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.3" />
-	  <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="SQLite.Designer">
-	    <HintPath>..\..\..\..\..\OneDrive\Pulpit\sqlite-netFx46-static-binary-bundle-x64-2015-1.0.117.0\SQLite.Designer.dll</HintPath>
-	  </Reference>
 	  <Reference Include="System.Data.SQLite">
 	    <HintPath>..\..\..\..\Downloads\sqlite-netFx46-static-binary-bundle-x64-2015-1.0.117.0\System.Data.SQLite.dll</HintPath>
 	  </Reference>
