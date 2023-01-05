@@ -1,5 +1,4 @@
-﻿
-
+﻿using System.Data.SQLite;
 namespace Mobilna;
 
 public partial class MainPage : ContentPage
@@ -37,8 +36,25 @@ public partial class MainPage : ContentPage
 
     private void Losowanie(object sender, EventArgs e)
     {
-        int aa = int.Parse(a.Text);
-        int bb = int.Parse(b.Text);
+        int n=0;
+        int aa=0, bb=0;
+        bool czy_liczba= int.TryParse(a.Text, out n) && int.TryParse(b.Text, out n);
+
+        if (czy_liczba)
+        {
+            aa = int.Parse(a.Text);
+            bb = int.Parse(b.Text);
+        }
+        else
+        {
+            
+            DisplayAlert("Błąd!!!", "Wprowadziłeś niepoprawną wartość!!!", "OK");
+            
+            return;
+        }
+
+
+
         int wylosowana;
 
         Random liczba = new Random();
@@ -51,8 +67,16 @@ public partial class MainPage : ContentPage
             bb= tmp;
         }
         
-        wylosowana = liczba.Next(aa, bb);
+        wylosowana = liczba.Next(aa, bb+1);
         c.Text = wylosowana.ToString();
+
+        string conection_string= "Data Source=baza.db";
+        SQLiteConnection con = new SQLiteConnection(conection_string);
+        
+        con.Open();
+
+        string sql;
+        sql = "INSERT INTO"
 
     }
 
