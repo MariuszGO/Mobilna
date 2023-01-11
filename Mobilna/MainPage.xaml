@@ -68,6 +68,9 @@
             <Label x:Name="c"
                    Text="S"/>
 
+            <Label x:Name="baza"
+                   Text="BAZA"/>
+
 
 
 

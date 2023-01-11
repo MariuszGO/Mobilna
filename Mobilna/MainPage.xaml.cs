@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.SQLite;
+
+
 namespace Mobilna;
 
 public partial class MainPage : ContentPage
@@ -62,8 +64,8 @@ public partial class MainPage : ContentPage
         
         wylosowana = liczba.Next(aa, bb+1);
         c.Text = wylosowana.ToString();
-
-        string conection_string= "Data Source=C:\\Users\\mariu\\Source\\Repos\\MariuszGO\\Mobilna\\Mobilna\\baza.db;Version=3;";
+    
+        string conection_string= "Data Source=C:\\Users\\mariu\\Source\\Repos\\Mobilna\\Mobilna\\baza.db;Version=3;";
         SQLiteConnection con = new SQLiteConnection(conection_string);
 
 
@@ -82,7 +84,7 @@ public partial class MainPage : ContentPage
 
  
 
-        string sql;
+       
        
 
 
@@ -93,29 +95,40 @@ public partial class MainPage : ContentPage
 
         con.Close();
 
-    }
 
-    /*READ
-     
-      static void ReadData(SQLiteConnection conn)
-      {
-         SQLiteDataReader sqlite_datareader;
-         SQLiteCommand sqlite_cmd;
-         sqlite_cmd = conn.CreateCommand();
-         sqlite_cmd.CommandText = "SELECT * FROM SampleTable";
+        try
+        {
+            con.Open();
+        }
+        catch (Exception ex)
+        {
 
-         sqlite_datareader = sqlite_cmd.ExecuteReader();
+        }
+
+
+
+        SQLiteDataReader sqlite_datareader;
+         SQLiteCommand sqlite_cmd1;
+         sqlite_cmd1 = con.CreateCommand();
+         sqlite_cmd1.CommandText = "SELECT liczba FROM losowanie";
+        baza.Text = " ";
+         sqlite_datareader = sqlite_cmd1.ExecuteReader();
          while (sqlite_datareader.Read())
          {
-            string myreader = sqlite_datareader.GetString(0);
-            Console.WriteLine(myreader);
-         }
-         conn.Close();
-      }
+            int myreader = sqlite_datareader.GetInt32(0);
+            baza.Text += myreader.ToString() + " ";
+
+        }
+
+    
+        con.Close();
+      
+    
+    }
 
 
-
-    */
+    
+    
 
 
     void OnEntryTextChanged(object sender, TextChangedEventArgs e)
