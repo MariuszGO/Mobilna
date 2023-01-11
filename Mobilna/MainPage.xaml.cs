@@ -11,9 +11,11 @@ namespace Mobilna;
 
 public partial class MainPage : ContentPage
 {
-	
 
-	public MainPage()
+    string plik = "C:\\Users\\mariu\\source\\repos\\Mobilna\\Mobilna\\baza1.db";
+
+
+    public MainPage()
 	{
 		InitializeComponent();
 	}
@@ -31,13 +33,15 @@ public partial class MainPage : ContentPage
 
     private void Losowanie(object sender, EventArgs e)
     {
+        //string path = Directory.GetCurrentDirectory();
+     
 
-        if (!File.Exists("baza.db"))
+        if (!File.Exists(plik))
         {
 
-            SQLiteConnection.CreateFile("baza.db");
+            SQLiteConnection.CreateFile(plik);
 
-            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=./baza.db;Version=3;");
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=" + plik + ";Version=3;");
             m_dbConnection.Open();
 
             string sql = "create table losowanie (liczba int)";
@@ -85,7 +89,7 @@ public partial class MainPage : ContentPage
         wylosowana = liczba.Next(aa, bb+1);
         c.Text = wylosowana.ToString();
     
-        string conection_string= "Data Source=baza.db;Version=3;";
+        string conection_string= "Data Source=" + plik + ";Version=3;";
         SQLiteConnection con = new SQLiteConnection(conection_string);
 
 
@@ -149,7 +153,7 @@ public partial class MainPage : ContentPage
 
     private void usunn(object sender, EventArgs e) {
 
-        string conection_string = "Data Source=baza.db;Version=3;";
+        string conection_string = "Data Source=" + plik + ";Version=3;";
         SQLiteConnection con = new SQLiteConnection(conection_string);
 
 
