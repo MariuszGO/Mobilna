@@ -31,6 +31,26 @@ public partial class MainPage : ContentPage
 
     private void Losowanie(object sender, EventArgs e)
     {
+
+        if (!File.Exists("baza.db"))
+        {
+
+            SQLiteConnection.CreateFile("baza.db");
+
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=./baza.db;Version=3;");
+            m_dbConnection.Open();
+
+            string sql = "create table losowanie (liczba int)";
+
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+           m_dbConnection.Close();
+
+
+        }
+
+
         int n=0;
         int aa=0, bb=0;
         bool czy_liczba= int.TryParse(a.Text, out n) && int.TryParse(b.Text, out n);
@@ -65,7 +85,7 @@ public partial class MainPage : ContentPage
         wylosowana = liczba.Next(aa, bb+1);
         c.Text = wylosowana.ToString();
     
-        string conection_string= "Data Source=C:\\Users\\mariu\\Source\\Repos\\Mobilna\\Mobilna\\baza.db;Version=3;";
+        string conection_string= "Data Source=baza.db;Version=3;";
         SQLiteConnection con = new SQLiteConnection(conection_string);
 
 
@@ -127,9 +147,29 @@ public partial class MainPage : ContentPage
     }
 
 
-    
-    
+    private void usunn(object sender, EventArgs e) {
 
+        string conection_string = "Data Source=baza.db;Version=3;";
+        SQLiteConnection con = new SQLiteConnection(conection_string);
+
+
+        try
+        {
+            con.Open();
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+
+
+        SQLiteCommand sqlite_cmd;
+        sqlite_cmd = con.CreateCommand();
+        sqlite_cmd.CommandText = "DELETE FROM LOSOWANIE";
+        sqlite_cmd.ExecuteNonQuery();
+
+    }
 
     void OnEntryTextChanged(object sender, TextChangedEventArgs e)
     {

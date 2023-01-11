@@ -71,6 +71,12 @@
             <Label x:Name="baza"
                    Text="BAZA"/>
 
+            <Button
+                x:Name="usun"
+                Text="usun"
+                Clicked="usunn"
+                HorizontalOptions="Center" />
+
 
 
 
