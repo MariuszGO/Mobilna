@@ -12,10 +12,11 @@ namespace Mobilna;
 public partial class MainPage : ContentPage
 {   //komputer szkolny
     //C:\Users\mariu\source\repos\MariuszGO\Mobilna\Mobilna
+    string plik = "C:\\Users\\mariu\\source\\repos\\MariuszGO\\Mobilna\\Mobilna\\baza1.db";
 
     //laptop
     //C:\\Users\\mariu\\source\\repos\\Mobilna\\Mobilna\\baza1.db
-    string plik = "C:\\Users\\mariu\\source\\repos\\MariuszGO\\Mobilna\\Mobilna\\baza1.db";
+   // string plik = "C:\\Users\\mariu\\source\\repos\\Mobilna\\Mobilna\\baza1.db";
 
 
     public MainPage()
